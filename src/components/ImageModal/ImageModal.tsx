@@ -3,8 +3,9 @@ import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root')
 import { BiLike } from "react-icons/bi";
 import { format } from 'date-fns';
+import { ImageModalProps } from '../types';
 
-export default function ImageModal({ isOpen, onRequestClose, image }) {
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onRequestClose, image }) => {
    
     const customStyles = {
         overlay: {
@@ -38,3 +39,5 @@ export default function ImageModal({ isOpen, onRequestClose, image }) {
             </ReactModal>
     )
 }
+
+export default ImageModal

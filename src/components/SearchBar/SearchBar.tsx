@@ -2,16 +2,18 @@ import toast, { Toaster } from "react-hot-toast";
 import { FiSearch } from "react-icons/fi";
 import s from './SearchBar.module.css';
 import { VscError } from "react-icons/vsc";
+import { FormEvent } from "react";
+import { SearchBarProps } from "../types";
 
-export default function SearchBar({ onSubmit }) {
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
     
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        const form = e.target;
-        const query = form.elements.query.value;
+        const form = e.target as HTMLFormElement;
+        const input = form.elements.namedItem('query') as HTMLInputElement
+        const query = input.value
 
         if (query.trim() === '') {
-
            toast.error('Please enter something...', {
                 icon: <VscError size={24} />,
                 style: {
@@ -23,7 +25,6 @@ export default function SearchBar({ onSubmit }) {
                 },
                 duration: 3000,
            })
-            
             return
         }
 
@@ -43,3 +44,5 @@ export default function SearchBar({ onSubmit }) {
             </header>
     )
 }
+
+export default SearchBar

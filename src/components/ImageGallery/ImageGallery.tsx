@@ -1,8 +1,9 @@
 import s from './ImageGallery.module.css';
 import ImageCard from '../ImageCard/ImageCard';
 import LazyLoad from 'react-lazyload';
+import { ImageGalleryProps } from '../types';
 
-export default function ImageGallery({data, onImageClick}) {
+const ImageGallery: React.FC<ImageGalleryProps> = ({data, onImageClick}) => {
     return (
         <ul className={s.list}>
             {data.map((item) => {
@@ -17,3 +18,5 @@ export default function ImageGallery({data, onImageClick}) {
         </ul>
     )
 }
+
+export default ImageGallery
